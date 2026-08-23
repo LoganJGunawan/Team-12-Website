@@ -1,16 +1,12 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import { Providers } from '@/providers'
 import './globals.css'
 import Header from '@/components/shared/Header'
+import { DashboardShell } from '@/components/layout/DashboardShell'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const roboto = Roboto({
+  variable: '--font-roboto',
   subsets: ['latin'],
 })
 
@@ -24,10 +20,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" className={`${roboto.variable} ${roboto.variable} h-full antialiased`}>
+      <body className="min-h-screen flex flex-col max-h-screen">
         <Header />
-        <Providers>{children}</Providers>
+        <Providers><DashboardShell>{children}</DashboardShell></Providers>
       </body>
     </html>
   )

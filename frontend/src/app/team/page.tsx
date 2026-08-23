@@ -58,55 +58,34 @@ export default function TeamPage() {
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
 
   return (
-  <div className="space-y-6">
-    <div className="rounded-lg border border-zinc-200 bg-[#C9D6DF] p-4 shadow-sm dark:border-zinc-800">
-      <h1 className="text-2xl font-bold tracking-tight text-center text-zinc-800">
-        Team 12 - Telstra AI Hologram & Digital Presence
-      </h1>
-    </div>
-
-    <div className="grid grid-cols-3 gap-6">
-      {teamInfo.map(({ image, name, role, blurb }, index) => {
-        const isExpanded = expandedCard === name
-        const isLong = blurb.length > 80
+  <div className="bg-temp-gray2 mtop-1">
+    {teamInfo.map(({ image, name, role, blurb}, index) => {
+        const hasBlurb = blurb.length > 0;
 
         return (
-          <div
-            key={name}
-            className={`${positions[index]} rounded-lg p-6`}
-          >
-            <Image
+        <div key={name} className="flex h-[calc(100vh-112px)] items-start gap-3 p-3">
+          <Image
               src={image}
               alt={`${name}'s profile picture`}
-              width={160}
-              height={160}
+              width={120}
+              height={120}
               className="rounded-full object-cover"
             />
+          
+          <div className="flex flex-col gap-y-3 flex-1 self-stretch m-6">
+            <div className="grid grid-cols-2 gap-y-3">
+              <p>Team Member Name: {name}</p>
+              <p>Contact Information: </p>
+              <p>Team Member Role: {role}</p>
+            </div>
 
-            <h2 className="text-lg font-semibold">{name}</h2>
-
-            <p className="text-sm text-zinc-500">{role}</p>
-
-            <p className="mt-4 text-sm">
-              {isExpanded || !isLong
-                ? blurb
-                : `${blurb.slice(0, 80)}...`}
-            </p>
-
-            {isLong && (
-              <button
-                onClick={() =>
-                  setExpandedCard(isExpanded ? null : name)
-                }
-                className="mt-2 text-sm font-medium underline"
-              >
-                {isExpanded ? 'View less' : 'View more...'}
-              </button>
-            )}
+            <div className = "rounded-xl bg-temp-darkgray flex-1 p-6">
+              {!hasBlurb ? 'Description' : blurb}
+            </div>
           </div>
-        )
-      })}
-    </div>
+        </div>
+      )
+    })}
   </div>
 )
 }
