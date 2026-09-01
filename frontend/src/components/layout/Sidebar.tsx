@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { LayoutDashboard, StickyNote, User, Settings, Users } from 'lucide-react'
+import { LayoutDashboard, StickyNote, User, Settings, Users, Pencil } from 'lucide-react'
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutDashboard },
-  { href: '/team', label: 'Team', icon: Users }
+  { href: '/team', label: 'Team', icon: Users },
+  { href: '/DemoPage', label: 'Demo', icon: Pencil }
 ]
 
 export function Sidebar() {
